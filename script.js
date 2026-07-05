@@ -419,6 +419,20 @@ const showVideoControls = () => {
   }, CONTROLS_HIDE_DELAY);
 };
 
+const toggleVideoControlsOnTap = (event) => {
+  if (!videoFrame || !videoControls || autoHideControlsMedia.matches) return;
+  if (event.target.closest("[data-video-controls]")) return;
+
+  const controlsVisible = videoFrame.classList.contains("is-controls-visible");
+  if (controlsVisible && shouldAutoHideVideoControls()) {
+    clearVideoControlsTimer();
+    videoFrame.classList.remove("is-controls-visible");
+    return;
+  }
+
+  showVideoControls();
+};
+
 const syncVideoControlsVisibility = () => {
   if (!videoFrame || !videoControls) return;
 
@@ -428,7 +442,10 @@ const syncVideoControlsVisibility = () => {
   videoFrame.addEventListener("pointerenter", showVideoControls);
   videoFrame.addEventListener("pointermove", showVideoControls);
   videoFrame.addEventListener("pointerleave", hideVideoControls);
-  videoFrame.addEventListener("pointerdown", showVideoControls);
+  videoFrame.addEventListener("pointerdown", () => {
+    if (autoHideControlsMedia.matches) showVideoControls();
+  });
+  videoFrame.addEventListener("click", toggleVideoControlsOnTap);
   videoFrame.addEventListener("focusin", showVideoControls);
   videoFrame.addEventListener("focusout", () => {
     if (videoFrame.matches(":hover")) return;
