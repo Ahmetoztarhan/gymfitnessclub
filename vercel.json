@@ -1,0 +1,81 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/media/hero-main.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012.03.24.webp"
+    },
+    {
+      "source": "/media/facility-layout.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012SAS.03.38.webp"
+    },
+    {
+      "source": "/media/training-zone.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20atSADADAS%2012.03.40.webp"
+    },
+    {
+      "source": "/media/video-poster.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012.03.40.webp"
+    },
+    {
+      "source": "/media/membership-1-month.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012.03.21.webp"
+    },
+    {
+      "source": "/media/membership-3-month.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012FHFFG.04.52.webp"
+    },
+    {
+      "source": "/media/membership-12-month.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20atSADSADSA%2012.03.39.webp"
+    },
+    {
+      "source": "/media/gallery-01.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012.03.24.webp"
+    },
+    {
+      "source": "/media/gallery-02.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012.03.21.webp"
+    },
+    {
+      "source": "/media/gallery-03.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012.03.34.webp"
+    },
+    {
+      "source": "/media/gallery-04.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012SAS.03.38.webp"
+    },
+    {
+      "source": "/media/gallery-05.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012FHFFG.04.52.webp"
+    },
+    {
+      "source": "/media/gallery-06.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20atSADSADSA%2012.03.39.webp"
+    },
+    {
+      "source": "/media/gallery-07.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%2012.03.40.webp"
+    },
+    {
+      "source": "/media/gallery-08.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20at%20ASADDASA12.03.41.webp"
+    },
+    {
+      "source": "/media/gallery-09.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20atSAASA%2012.03.35.webp"
+    },
+    {
+      "source": "/media/gallery-10.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17DSADSADA%20at%2012.03.39.webp"
+    },
+    {
+      "source": "/media/gallery-11.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-SAAS17%20at%2012.03.38.webp"
+    },
+    {
+      "source": "/media/gallery-12.webp",
+      "destination": "/assets/images/WhatsApp%20Image%202026-06-17%20ASat%2012.03.34.webp"
+    }
+  ]
+}
