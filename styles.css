@@ -639,9 +639,11 @@ textarea {
 }
 
 @media (hover: none), (pointer: coarse) {
-  .feature-video,
-  .video-controls {
+  .feature-video {
     opacity: 1;
+  }
+
+  .video-controls {
     transform: none;
   }
 }

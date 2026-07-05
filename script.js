@@ -365,6 +365,12 @@ const updateVideoButton = () => {
 
   const isPaused = promoVideo.paused;
   videoFrame?.classList.toggle("is-playing", !isPaused);
+  if (isPaused) {
+    clearVideoControlsTimer();
+    videoFrame?.classList.add("is-controls-visible");
+  } else {
+    showVideoControls();
+  }
 
   if (!videoToggle) return;
 
@@ -394,17 +400,20 @@ const clearVideoControlsTimer = () => {
   }
 };
 
+const shouldAutoHideVideoControls = () => Boolean(videoFrame && videoControls && promoVideo && !promoVideo.paused);
+
 const hideVideoControls = () => {
-  if (!videoFrame || !autoHideControlsMedia.matches) return;
+  if (!videoFrame || !videoControls || !shouldAutoHideVideoControls()) return;
 
   videoFrame.classList.remove("is-controls-visible");
 };
 
 const showVideoControls = () => {
-  if (!videoFrame || !autoHideControlsMedia.matches) return;
+  if (!videoFrame || !videoControls) return;
 
   videoFrame.classList.add("is-controls-visible");
   clearVideoControlsTimer();
+  if (!shouldAutoHideVideoControls()) return;
   controlsHideTimer = window.setTimeout(() => {
     hideVideoControls();
   }, CONTROLS_HIDE_DELAY);
@@ -414,15 +423,12 @@ const syncVideoControlsVisibility = () => {
   if (!videoFrame || !videoControls) return;
 
   clearVideoControlsTimer();
-  videoFrame.classList.remove("is-controls-visible");
-
-  if (!autoHideControlsMedia.matches) {
-    return;
-  }
+  videoFrame.classList.add("is-controls-visible");
 
   videoFrame.addEventListener("pointerenter", showVideoControls);
   videoFrame.addEventListener("pointermove", showVideoControls);
   videoFrame.addEventListener("pointerleave", hideVideoControls);
+  videoFrame.addEventListener("pointerdown", showVideoControls);
   videoFrame.addEventListener("focusin", showVideoControls);
   videoFrame.addEventListener("focusout", () => {
     if (videoFrame.matches(":hover")) return;
@@ -468,6 +474,20 @@ const pausePromoVideo = () => {
   promoVideo?.pause();
   stopGymBeat();
   updateVideoButton();
+};
+
+const syncPromoAudioWithVisibility = async () => {
+  if (!promoVideo) return;
+
+  if (document.hidden) {
+    stopGymBeat();
+    return;
+  }
+
+  if (!promoVideo.paused) {
+    await startGymBeat();
+    updateVideoButton();
+  }
 };
 
 videoToggle?.addEventListener("click", async () => {
@@ -548,6 +568,15 @@ promoVideo?.addEventListener("loadedmetadata", updateVideoProgress);
 promoVideo?.addEventListener("playing", updateVideoButton);
 promoVideo?.addEventListener("pause", updateVideoButton);
 promoVideo?.addEventListener("ended", updateVideoButton);
+document.addEventListener("visibilitychange", () => {
+  syncPromoAudioWithVisibility().catch(() => {});
+});
+window.addEventListener("focus", () => {
+  syncPromoAudioWithVisibility().catch(() => {});
+});
+window.addEventListener("pageshow", () => {
+  syncPromoAudioWithVisibility().catch(() => {});
+});
 document.addEventListener("fullscreenchange", updateFullscreenButton);
 document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
 updateVideoProgress();
