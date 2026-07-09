@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gymfitnessclub.com.tr/sitemap.xml
+Sitemap: https://www.gymfitnessclub.com.tr/sitemap.xml
